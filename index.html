@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device infos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0; 
+            color: #fff; 
+            font-family: 'Trebuchet', sans-serif; 
+        }
+        body {
+            height: 100vh; 
+            background-color: #a6f2e6; 
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #0d594d; 
+            box-shadow: 2px 2px 16px rgba(0,0,0,.25); 
+            height: 80vh; 
+            max-width: 420px; 
+            width: 90%; 
+            padding: 1em; 
+            display: flex; 
+            align-items: center;
+        }
+
+        .container ul li  {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li>OS : <span class="os-name">&hellip;</span> / <span class="os-version">&hellip;</span></li>
+        </ul>
+    </div>
+    
+    <script src="ua-parser.js"></script> 
+    <script>
+        const deviceInfos = UAParser(navigator.userAgent); 
+        console.log(deviceInfos);
+
+        function getNode(cssSelector) {
+            return document.querySelector(cssSelector); 
+        }
+
+        const osName = getNode('.os-name'); 
+        const osVersion = getNode('.os-version'); 
+        osName.textContent = deviceInfos.os.name; 
+        osVersion.textContent = deviceInfos.os.version; 
+    </script>
+</body>
+</html>
